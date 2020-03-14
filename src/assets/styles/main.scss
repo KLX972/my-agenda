@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "ITCAvantGardeStd-Demi";
+  src: url('assets/fonts/itc-avant-garde/ITCAvantGardeStd-Demi.eot'); /* IE9 Compat Modes */
+  src: url("assets/fonts/itc-avant-garde/ITCAvantGardeStd-Demi.woff2") format("woff2"),
+  url("assets/fonts/itc-avant-garde/ITCAvantGardeStd-Demi.svg") format("svg"),
+  url("assets/fonts/itc-avant-garde/ITCAvantGardeStd-Demi.ttf") format("truetype"),
+  url("assets/fonts/itc-avant-garde/ITCAvantGardeStd-Demi.woff") format("woff"),
+  url("assets/fonts/itc-avant-garde/ITCAvantGardeStd-Demi.eot?#iefix") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'itc-medium';
+  src: url('assets/fonts/itc-medium/AvantGarde-Medium.eot');
+  src: url('assets/fonts/itc-medium/AvantGarde-Medium.woff') format('woff'),
+  url('assets/fonts/itc-medium/AvantGarde-Medium.ttf') format('truetype'),
+  url('assets/fonts/itc-medium/AvantGarde-Medium.svg#AvantGarde-Medium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@import "home";
