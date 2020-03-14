@@ -1,8 +1,14 @@
 <template lang="html">
-    <p class="testing">coucou</p>
+    <Navbar></Navbar>
 </template>
 
 <script>
+import Navbar from '@/components/home/Navbar.vue'
+
 export default {
+  name: 'home',
+  components: {
+    Navbar
+  }
 }
 </script>
