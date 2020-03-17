@@ -22,3 +22,14 @@
 
 
 @import "home";
+@import "variables";
+@import "navbar";
+
+html, body {
+  color: $myAntha;
+  font-family: ITCAvantGardeStd-Demi;
+}
+
+p{
+  margin-bottom: 0;
+}

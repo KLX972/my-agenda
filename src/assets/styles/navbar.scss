@@ -1,0 +1,52 @@
+.my-navbar{
+  border-bottom: 1px solid $myGrey;
+  padding: 20px 30px 20px 30px;
+  display: flex;
+  align-items: center;
+}
+.my-navbar-logo-content{
+  display: flex;
+  align-items: center;
+}
+.my-navbar-logo-title{
+  color: $myGreen;
+  font-size: 2.8vmin;
+  margin-left: 20px;
+}
+.my-navbar-today-button-content{
+  border: 1px solid $myGrey;
+  border-radius: 10px;
+  padding: 5px 10px 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 80px;
+}
+.my-navbar-today-button-text{
+  font-size: 1.8vmin;
+  color: $myAntha;
+  margin-top: 2px;
+}
+.my-navbar-change-week-buttons-content{
+  display: flex;
+  margin-left: 30px;
+}
+.my-navbar-change-week-button-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.my-navbar-change-week-button-content:hover{
+  background-color: $myLightGrey;
+}
+.my-navbar-change-week-button-icon{
+  font-size: 1.7vmin;
+}
+.my-navbar-date{
+  margin-left: 30px;
+  font-size: 2.5vmin;
+  font-family: 'itc-medium'
+}
