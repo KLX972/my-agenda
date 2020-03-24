@@ -9,6 +9,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import "./filters.js"
 
 library.add(faChevronDown);
 library.add(faChevronRight);

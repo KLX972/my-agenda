@@ -22,6 +22,9 @@
   align-items: center;
   margin-left: 80px;
 }
+.my-navbar-today-button-content:hover{
+  cursor: pointer;
+}
 .my-navbar-today-button-text{
   font-size: 1.8vmin;
   color: $myAntha;

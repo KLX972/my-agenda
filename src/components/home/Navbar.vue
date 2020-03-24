@@ -11,18 +11,18 @@
       </IconBase>
       <p class="my-navbar-logo-title">Agenda</p>
     </div>
-    <div class="my-navbar-today-button-content">
+    <div class="my-navbar-today-button-content" @click="chooseToday()">
       <p class="my-navbar-today-button-text">Aujourd'hui</p>
     </div>
     <div class="my-navbar-change-week-buttons-content">
-      <div class="my-navbar-change-week-button-content">
+      <div class="my-navbar-change-week-button-content" title="semaine précédente">
         <font-awesome-icon icon="chevron-left" class="my-navbar-change-week-button-icon"/>
       </div>
-      <div class="my-navbar-change-week-button-content">
+      <div class="my-navbar-change-week-button-content" title="semaine suivante">
         <font-awesome-icon icon="chevron-right" class="my-navbar-change-week-button-icon"/>
       </div>
     </div>
-    <p class="my-navbar-date">Mars 2020</p>
+    <p class="my-navbar-date">{{chosenDate | moment("MMMM YYYY" ) | capitalize}}</p>
   </div>
 </template>
 
@@ -35,6 +35,14 @@ export default {
   components: {
     IconBase,
     CalendarIcon
+  },
+  props:{
+    chosenDate: Date
+  },
+  methods:{
+    chooseToday(){
+      this.$emit('selectToday', new Date())
+    }
   }
 }
 </script>
