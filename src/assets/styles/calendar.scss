@@ -1,0 +1,80 @@
+.my-calendar{
+  width: 80%;
+  margin-left: 22%;
+  margin-top: 80px;
+}
+.my-calendar-columns{
+  display: flex;
+  position: relative;
+}
+.hide-hours-block{
+  position: absolute;
+  background-color: white;
+  left: -30%;
+  top: 0px;
+  width: 30%;
+  height: calc(8.2vmin + 22px);
+  z-index: 0;
+}
+.my-calendar-column{
+  width: 14%;
+}
+.my-calendar-cell{
+  position: relative;
+  z-index: -1;
+  height: 60px;
+  border-right: 1px solid $myLightGrey;
+  border-bottom: 1px solid $myLightGrey;
+  &.first-cell{
+    border-top: 1px solid $myLightGrey;
+    margin-top: 120px;
+  }
+  &.first-column{
+    border-left: 1px solid $myLightGrey;
+  }
+}
+.my-calendar-cell-hour{
+  position: absolute;
+  font-family: 'itc-medium';
+  font-size: 1.5vmin;
+  color: $myGrey;
+  left: -22%;
+  top: -11px;
+  z-index: -1;
+}
+.my-calendar-header-cell{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: fixed;
+  width: calc(14% - 30px);
+  background-color: white;
+}
+.my-calendar-header-cell-title{
+  text-align: center;
+  font-size: 2.2vmin;
+  font-family: 'itc-medium';
+  &.active{
+    color: $myGreen;
+  }
+}
+.my-calendar-header-cell-subtitle-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6vmin;
+  height: 6vmin;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  margin-top: 5px;
+  &.active{
+    background-color: $myGreen;
+  }
+}
+.my-calendar-header-cell-subtitle{
+  font-size: 2.6vmin;
+  font-family: 'itc-medium';
+  &.active{
+    color: white;
+  }
+}

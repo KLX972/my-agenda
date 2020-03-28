@@ -1,6 +1,11 @@
 .my-sidebar{
-  padding-top: 30px;
+  // padding-top: 30px;
+  width: 20%;
+  position: fixed;
+  top: 90px;
+  left: 30px;
 }
 .vdp-datepicker__calendar{
   border: none !important;
+  width: 250px !important;
 }

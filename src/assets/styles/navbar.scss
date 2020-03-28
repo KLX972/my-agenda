@@ -3,6 +3,11 @@
   padding: 20px 30px 20px 30px;
   display: flex;
   align-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 80px;
+  background-color: white;
+  z-index: 1;
 }
 .my-navbar-logo-content{
   display: flex;

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="my-sidebar col-3">
+  <div class="my-sidebar">
     <Datepicker
         v-model="selectedDate"
         name="uniquename"

@@ -1,10 +1,11 @@
 <template lang="html">
   <div class="home">
     <Navbar :chosenDate="chosenDate" @selectToday="setChosenDate"></Navbar>
-    <div class="container-fluid">
-      <div class="row">
+    <div class="my-calendar-content">
+      <!-- <div class="row"> -->
         <Sidebar :chosenDate="chosenDate" @selectedDate="setChosenDate"></Sidebar>
-      </div>
+        <Calendar :chosenDate="chosenDate"></Calendar>
+      <!-- </div> -->
     </div>
   </div>
 
@@ -13,12 +14,14 @@
 <script>
 import Navbar from '@/components/home/Navbar.vue'
 import Sidebar from '@/components/home/Sidebar.vue'
+import Calendar from '@/components/home/Calendar.vue'
 
 export default {
   name: 'home',
   components: {
     Navbar,
-    Sidebar
+    Sidebar,
+    Calendar
   },
   data(){
     return {
