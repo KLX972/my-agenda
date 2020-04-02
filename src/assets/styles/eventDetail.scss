@@ -1,0 +1,25 @@
+.detail-event-content{
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  &.title{
+    margin-bottom: 50px;
+  }
+}
+
+.detail-event-title{
+  font-size: 3.5vmin;
+  margin-left: 20px;
+  margin-top: 2px;
+}
+.detail-event-hours{
+  font-family: 'itc-medium';
+  font-size: 2.5vmin;
+  margin-left: 20px;
+  margin-top: 2px;
+}
+.detail-event-text{
+  font-size: 2.5vmin;
+  margin-left: 20px;
+  margin-top: 2px;
+}

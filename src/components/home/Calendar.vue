@@ -4,22 +4,30 @@
       <div class="my-calendar-column":key="indexColumn" v-for="(day,indexColumn) in myWeekCalendar">
         <div class="my-calendar-header-cell" >
           <div class="hide-hours-block" v-if="indexColumn === 0"></div>
-          <p class="my-calendar-header-cell-title" :class="activeSelectedDate(day.date) ? 'active' : '' ">
+          <p class="my-calendar-header-cell-title" :class="isSelectedDate(day.date) ? 'active' : '' ">
             {{day.date | moment('ddd') | capitalize}}
           </p>
           <div class="my-calendar-header-cell-subtitle-content"
-              :class="activeSelectedDate(day.date) ? 'active' : '' ">
+              :class="isSelectedDate(day.date) ? 'active' : '' ">
             <p class="my-calendar-header-cell-subtitle"
-                :class="activeSelectedDate(day.date) ? 'active' : '' ">{{day.date | moment('Do')}}</p>
+                :class="isSelectedDate(day.date) ? 'active' : '' ">{{day.date | moment('Do')}}</p>
           </div>
         </div>
-        <div class="my-calendar-cell"
-              :class="indexColumn === 0 && indexCell === 0 ? 'first-column first-cell' : indexColumn === 0 && indexCell !== 0 ? 'first-column' : indexColumn !== 0 && indexCell === 0 ? 'first-cell' : ''  "
-              :key="indexCell" v-for="(hour,indexCell) in day.hours"
+        <div class="my-calendar-cell-content"
+        :class="indexColumn === 0 && indexCell === 0 ? 'first-column first-cell' : indexColumn === 0 && indexCell !== 0 ? 'first-column' : indexColumn !== 0 && indexCell === 0 ? 'first-cell' : ''  "
+        :key="indexCell" v-for="(hour,indexCell) in day.hours"
         >
-          <p class="my-calendar-cell-hour" v-if="indexColumn === 0 && indexCell !== 0">{{hour}}</p>
-
+          <div class="my-calendar-cell">
+            <p class="my-calendar-cell-hour" v-if="indexColumn === 0 && indexCell !== 0">{{hour.hour}}</p>
+          </div>
+          <div class="my-calendar-cell-event-content"
+              :style="eventPosition(hour.event[0].startDate,hour.event[0].endDate)" v-if="hour.event.length !==0 "
+              @click="showEventModal(hour.event[0].id)"
+          >
+            <p class="my-calendar-cell-event-title">{{hour.event[0].title}}</p>
+          </div>
         </div>
+
       </div>
 
     </div>
@@ -27,6 +35,8 @@
 </template>
 
 <script>
+import Vuex from 'vuex'
+import SecureLS from "secure-ls";
 
 export default {
   name: 'calendar',
@@ -40,37 +50,78 @@ export default {
     }
   },
   methods:{
-    activeSelectedDate(date){
+    ...Vuex.mapActions('modalSlidingUp', {
+      toggleSlidingUpModal: 'toggleSlidingUpModal',
+    }),
+    showEventModal(eventId) {
+      let ls = new SecureLS({encodingType: 'aes', encryptionSecret: 'MAOUHedjnoidnud45'});
+      ls.set('eventId', eventId)
+      this.toggleSlidingUpModal('event');
+
+    },
+    isSelectedDate(date){
       return (date.getDate() === this.chosenDate.getDate()
         && date.getMonth() === this.chosenDate.getMonth()
         && date.getFullYear() === this.chosenDate.getFullYear()
       )
+    },
+    eventPosition(startDate,endDate){
+      let start = new this.$moment(startDate)
+      let end = new this.$moment(endDate)
+      let marginTop = 0
+
+      //event duration equal height of the event div because the height of each cell equal 60px
+      let eventDuration = end.diff(start,'minutes')
+
+      if (startDate.getMinutes() >= 30) {
+        marginTop = 30
+      }
+
+      return 'min-height:' + eventDuration + 'px; margin-top :' + marginTop + 'px;'
+
+
     }
   },
   computed:{
+    ...Vuex.mapGetters('events', {
+      getAllEvents: 'getAllEvents',
+      getEventsByUser: 'getEventsByUser'
+    }),
+    ...Vuex.mapGetters('users', {
+      getCurrentUser: 'getCurrentUser'
+    }),
     myWeekCalendar(){
-      // let myChosenDate = new this.$moment(this.chosenDate)
       let myWeekCalendar = []
-      let days = []
-      let hoursOfDay = []
-      let eventsTab = []
-
-      for (var i = 0; i < 24; i++) {
-        if (i < 10) {
-          hoursOfDay[i] = '0' + i + ':00'
-        }else {
-          hoursOfDay[i] = i + ':00'
-        }
-
-      }
+      let userEventsTab = this.getEventsByUser(this.getCurrentUser.id)
 
       for (var i = 0; i < 7; i++) {
+        let hoursOfDay = []
+        for (var j = 0; j < 24; j++) {
+          let hour = {}
+          if (j < 10) {
+            hour.hour = '0' + j + ':00'
+            hoursOfDay[j] = hour
+          }else {
+            hour.hour = j + ':00'
+            hoursOfDay[j] = hour
+          }
+          hour.event = []
+        }
+
         let myChosenDate = new this.$moment(this.chosenDate)
         let day = {};
-        //get each  of the current week
+        //get each day of the current week
         day.date = myChosenDate.isoWeekday((i+1))._d
         //get hoursTab of the day
         day.hours = hoursOfDay
+
+        if (userEventsTab.length !== 0) {
+          let eventsOfTheDay = userEventsTab.filter(element => element.startDate.getDate() === day.date.getDate() && element.startDate.getMonth() === day.date.getMonth() && element.startDate.getFullYear() === day.date.getFullYear())
+
+          for (var k = 0; k < eventsOfTheDay.length; k++) {
+            day.hours[eventsOfTheDay[k].startDate.getHours()].event.push(eventsOfTheDay[k])
+          }
+        }
 
         myWeekCalendar[i] = day
       }
@@ -78,11 +129,6 @@ export default {
     }
   },
   mounted(){
-    // let test = new this.$moment(this.chosenDate)
-    // console.log(test.subtract(3, 'days'));
-    // console.log(test.isoWeekday((5+1))._d,test.isoWeekday((6+1))._d);
-
-
   }
 }
 </script>

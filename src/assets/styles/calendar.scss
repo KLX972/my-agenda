@@ -14,14 +14,12 @@
   top: 0px;
   width: 30%;
   height: calc(8.2vmin + 22px);
-  z-index: 0;
+  z-index: 1;
 }
 .my-calendar-column{
   width: 14%;
 }
-.my-calendar-cell{
-  position: relative;
-  z-index: -1;
+.my-calendar-cell-content{
   height: 60px;
   border-right: 1px solid $myLightGrey;
   border-bottom: 1px solid $myLightGrey;
@@ -33,6 +31,10 @@
     border-left: 1px solid $myLightGrey;
   }
 }
+.my-calendar-cell{
+  position: relative;
+  z-index: -1;
+}
 .my-calendar-cell-hour{
   position: absolute;
   font-family: 'itc-medium';
@@ -42,12 +44,32 @@
   top: -11px;
   z-index: -1;
 }
+.my-calendar-cell-event-content{
+  width: 12%;
+  margin-left: 1%;
+  padding: 5px;
+  border: 1px solid $myPink;
+  border-radius: 5px;
+  background-color: $myPink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+.my-calendar-cell-event-content:hover{
+  cursor: pointer;
+}
+.my-calendar-cell-event-title{
+  color: white;
+  font-size: 1.7vmin;
+}
 .my-calendar-header-cell{
   padding-top: 10px;
   padding-bottom: 10px;
   position: fixed;
   width: calc(14% - 30px);
   background-color: white;
+  z-index: 1;
 }
 .my-calendar-header-cell-title{
   text-align: center;

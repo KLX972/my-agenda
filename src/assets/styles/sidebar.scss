@@ -9,3 +9,55 @@
   border: none !important;
   width: 250px !important;
 }
+.my-sidebar-list-users-content{
+  margin-top: 30px;
+}
+.my-sidebar-list-users-title{
+  padding-top: 15px;
+  padding-left: 10px;
+  border-top: 1px solid $myLightGrey;
+  font-size: 2.2vmin;
+  margin-bottom: 10px;
+  width: 70%;
+}
+.my-sidebar-list-users-user-content{
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.my-sidebar-list-users-user{
+  font-size: 1.8vmin;
+  color: $myGrey;
+  &.active{
+    color: $myAntha;
+  }
+}
+.user-choice-radio[type=radio]{
+    display: none;
+}
+.user-choice-label{
+    margin-bottom: 0;
+    height: 20px;
+}
+.user-choice-radio[type=radio] + label:before{
+    border: 1px solid $myGrey;
+    border-radius: 3px;
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 20px;
+    display: block;
+    content: '';
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 3px $myGrey;
+}
+.user-choice-radio[type=radio]:checked + label:before{
+    background: url("assets/images/Icons_White_outline_validation.svg") no-repeat;
+    background-color: $myPink;
+    background-size: 100% auto;
+    background-position: center;
+}
+.user-choice-radio[type=radio]:hover + label:before{
+    box-shadow: 0 0 10px $myGrey;
+}
