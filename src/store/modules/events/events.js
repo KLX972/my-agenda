@@ -32,6 +32,16 @@ const state = {
         endDate: new Date('2020-04-09 07:30:00'),
         text: 'Faire le point générale sur toutes les tâches à reprendre'
       },
+      {
+        id: 4,
+        user:{
+          id: 2
+        },
+        title: 'Envoi test Zelty',
+        startDate: new Date('2020-04-03 07:00:00'),
+        endDate: new Date('2020-04-09 08:30:00'),
+        text: 'Avancer le plus possible les tâches en cour et envoyer le projet à Marc de Zelty'
+      },
 
     ]
 };
