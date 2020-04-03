@@ -8,8 +8,8 @@ const state = {
           id: 1
         },
         title: 'Rdv Zelty',
-        startDate: new Date('2020-03-30 10:00:00'),
-        endDate: new Date('2020-03-30 10:30:00'),
+        startDate: new Date('2020-04-06 07:30:00'),
+        endDate: new Date('2020-04-06 08:30:00'),
         text: 'Rendez-vous avec Marc de Zelty pour faire un bilan de l\'application et discuter de la suite'
       },
       {
@@ -18,8 +18,8 @@ const state = {
           id: 1
         },
         title: 'Réunion fin Covid-19',
-        startDate: new Date('2020-04-02 08:30:00'),
-        endDate: new Date('2020-04-02 10:30:00'),
+        startDate: new Date('2020-04-08 08:30:00'),
+        endDate: new Date('2020-04-08 10:30:00'),
         text: 'Faire le point générale sur toutes les tâches à reprendre'
       },
       {
@@ -28,9 +28,9 @@ const state = {
           id: 2
         },
         title: 'Réunion fin Covid-19',
-        startDate: new Date('2020-04-02 08:00:00'),
-        endDate: new Date('2020-04-02 08:30:00'),
-        text: 'Faire le point générale sur toutes les tâche à reprendre'
+        startDate: new Date('2020-04-09 07:00:00'),
+        endDate: new Date('2020-04-09 07:30:00'),
+        text: 'Faire le point générale sur toutes les tâches à reprendre'
       },
 
     ]
@@ -40,17 +40,32 @@ const mutations = {
   UPDATE_EVENTS: (state, events) => {
     state.events = events;
   },
+  ADD_EVENT: (state, myEvent) => {
+    state.events.push(myEvent);
+  },
+  REMOVE_EVENT: (state, index) => {
+    state.events.splice(index, 1);
+  },
 };
 const actions = {
-  setEvents : async ( store , event) => {
+  updateEvents : async ( store , event) => {
     let eventsTab = state.events
-    // const eventsTabFilteredTab = state.eventsTab.filter(previousEvent => previousEvent.id === event.id);
 
     const isInEventsTab = (element) => element.id === event.id;
     let indexToReplace = eventsTab.findIndex(isInEventsTab)
 
     eventsTab.splice(indexToReplace, 1, event);
     store.commit('UPDATE_EVENTS' , eventsTab);
+    },
+
+  removeEvent : async ( store , event) => {
+    const isInEventsTab = (element) => element.id === event.id;
+    let indexToRemove = state.events.findIndex(isInEventsTab)
+    store.commit('REMOVE_EVENT' , indexToRemove)
+    },
+
+  addEvent : async ( store , myEvent) => {
+    store.commit('ADD_EVENT' , myEvent);
     },
 };
 

@@ -13,6 +13,8 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import "./filters.js"
 import DetailEvent from "@/views/DetailEvent";
+import EditEvent from "@/views/EditEvent";
+import AddEvent from "@/views/AddEvent";
 
 library.add(faChevronDown);
 library.add(faChevronRight);
@@ -22,7 +24,9 @@ library.add(faTimesCircle);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 //Components that can be load in slidingUpModal component
-Vue.component('event', DetailEvent);
+Vue.component('detail-event', DetailEvent);
+Vue.component('edit-event', EditEvent);
+Vue.component('add-event', AddEvent);
 
 Vue.config.productionTip = false
 

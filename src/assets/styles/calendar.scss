@@ -32,8 +32,12 @@
   }
 }
 .my-calendar-cell{
-  position: relative;
-  z-index: -1;
+  position: relative;;
+  height: 60px;
+}
+.my-calendar-cell:hover{
+  cursor: pointer;
+  background-color: $myLightGrey;
 }
 .my-calendar-cell-hour{
   position: absolute;
@@ -55,6 +59,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
+  z-index: 1;
 }
 .my-calendar-cell-event-content:hover{
   cursor: pointer;
@@ -69,7 +74,7 @@
   position: fixed;
   width: calc(14% - 30px);
   background-color: white;
-  z-index: 1;
+  z-index: 2;
 }
 .my-calendar-header-cell-title{
   text-align: center;

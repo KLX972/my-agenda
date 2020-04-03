@@ -17,7 +17,7 @@
         :class="indexColumn === 0 && indexCell === 0 ? 'first-column first-cell' : indexColumn === 0 && indexCell !== 0 ? 'first-column' : indexColumn !== 0 && indexCell === 0 ? 'first-cell' : ''  "
         :key="indexCell" v-for="(hour,indexCell) in day.hours"
         >
-          <div class="my-calendar-cell">
+          <div class="my-calendar-cell" @click="showAddEventModal(day.date, hour.hour)">
             <p class="my-calendar-cell-hour" v-if="indexColumn === 0 && indexCell !== 0">{{hour.hour}}</p>
           </div>
           <div class="my-calendar-cell-event-content"
@@ -45,10 +45,6 @@ export default {
   props:{
     chosenDate : Date
   },
-  data(){
-    return {
-    }
-  },
   methods:{
     ...Vuex.mapActions('modalSlidingUp', {
       toggleSlidingUpModal: 'toggleSlidingUpModal',
@@ -56,7 +52,13 @@ export default {
     showEventModal(eventId) {
       let ls = new SecureLS({encodingType: 'aes', encryptionSecret: 'MAOUHedjnoidnud45'});
       ls.set('eventId', eventId)
-      this.toggleSlidingUpModal('event');
+      this.toggleSlidingUpModal('detail-event');
+    },
+    showAddEventModal(dayDate, hour) {
+      let ls = new SecureLS({encodingType: 'aes', encryptionSecret: 'MAOUHedjnoidnud45'});
+      ls.set('chosenDay', dayDate)
+      ls.set('chosenHour', hour)
+      this.toggleSlidingUpModal('add-event');
 
     },
     isSelectedDate(date){

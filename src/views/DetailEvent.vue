@@ -1,5 +1,27 @@
 <template lang="html">
   <div class="detail-event">
+    <div class="tool-box-content">
+      <div class="tool-box-icon-content" @click="displayEditView()">
+        <IconBase
+            icon-name="edit"
+            icon-color="#3E3E3E"
+            width="20"
+            height="20"
+        >
+            <EditIcon/>
+        </IconBase>
+      </div>
+      <div class="tool-box-icon-content" @click="removeMyEvent()">
+        <IconBase
+            icon-name="remove"
+            icon-color="#3E3E3E"
+            width="20"
+            height="20"
+        >
+            <TrashIcon/>
+        </IconBase>
+      </div>
+    </div>
     <div class="detail-event-content title">
       <IconBase
           icon-name="title"
@@ -24,7 +46,7 @@
         {{chosenEvent.startDate | moment("dddd Do MMMM YYYY ") | capitalize}} , {{chosenEvent.startDate | moment("hh:mm")}} - {{chosenEvent.endDate | moment("hh:mm")}}
        </p>
     </div>
-    <div class="detail-event-content">
+    <div class="detail-event-content edit">
       <IconBase
           icon-name="report"
           icon-color="#FF8090"
@@ -47,9 +69,7 @@ import TimerIcon from '@/components/common/icons/TimerIcon.vue'
 import TrashIcon from '@/components/common/icons/TrashIcon.vue'
 import EditIcon from '@/components/common/icons/EditIcon.vue'
 import ReportIcon from '@/components/common/icons/ReportIcon.vue'
-// import Navbar from '@/components/home/Navbar.vue'
-// import Sidebar from '@/components/home/Sidebar.vue'
-// import Calendar from '@/components/home/Calendar.vue'
+import {blurOnModalSlidingUp} from '@/services/modalSlideUp/blurOnModalSlideUpAppear.js';
 
 export default {
   name: 'detailEvent',
@@ -68,12 +88,27 @@ export default {
     // }
   // },
   methods:{
-    // ...Vuex.mapActions('users', {
-    //   setCurrentUser: 'setCurrentUser'
-    // }),
-    // setChosenDate(value){
-    //   this.chosenDate = value
-    // }
+    ...Vuex.mapActions('modalSlidingUp', {
+      setModalSlidingUpContent: 'setModalSlidingUpContent',
+      setModalSlidedUp: 'setModalSlidedUp'
+    }),
+    ...Vuex.mapActions('events', {
+      removeEvent: 'removeEvent'
+    }),
+    displayEditView(){
+      this.setModalSlidingUpContent('edit-event')
+    },
+    removeMyEvent(){
+      this.removeEvent(this.chosenEvent)
+      this.shutDownModal()
+    },
+    shutDownModal(){
+      this.$parent.slidingActivated = !this.$parent.slidingActivated;
+      setTimeout(() => {
+        this.setModalSlidedUp();
+        blurOnModalSlidingUp(false)
+      }, 650);
+    }
   },
   computed:{
     ...Vuex.mapGetters('events', {
