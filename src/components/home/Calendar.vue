@@ -2,7 +2,7 @@
   <div class="my-calendar">
     <div class="my-calendar-columns">
       <div class="my-calendar-column":key="indexColumn" v-for="(day,indexColumn) in myWeekCalendar">
-        <div class="my-calendar-header-cell" >
+        <div class="my-calendar-header-cell" @click="selectNewDay(day.date)">
           <div class="hide-hours-block" v-if="indexColumn === 0"></div>
           <p class="my-calendar-header-cell-title" :class="isSelectedDate(day.date) ? 'active' : '' ">
             {{day.date | moment('ddd') | capitalize}}
@@ -80,7 +80,9 @@ export default {
       }
 
       return 'min-height:' + eventDuration + 'px; margin-top :' + marginTop + 'px;'
-
+    },
+    selectNewDay(date){
+      this.$emit('selectAnotherDay', date)
 
     }
   },

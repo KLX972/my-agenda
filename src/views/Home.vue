@@ -4,7 +4,7 @@
     <div class="my-calendar-content">
       <!-- <div class="row"> -->
         <Sidebar :chosenDate="chosenDate" @selectedDate="setChosenDate"></Sidebar>
-        <Calendar :chosenDate="chosenDate"></Calendar>
+        <Calendar :chosenDate="chosenDate" @selectAnotherDay="setChosenDate"></Calendar>
       <!-- </div> -->
     </div>
   </div>
